@@ -1,0 +1,1 @@
+A shell project involves creating a text-based interface for users to interact with a system or application via command-line commands. Key components include command parsing, execution, file system interaction, and user interface. this project is done by numerous oriabure & orji destiny
