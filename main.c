@@ -50,6 +50,8 @@ int main(int argc, char **argv, char **envp)
 		if (strcmp(cmd_args[0], "exit") == 0)
 		{
 			free(line);
+			for (j = 0; cmd_args[j] != NULL; j++)
+				free(cmd_args[j]);
 			free(cmd_args);
 			exit(22);
 		}
