@@ -17,7 +17,7 @@ int main(int argc, char **argv, char **envp)
 	size_t n = 0;
 	pid_t child_p;
 	char **cmd_args = NULL;
-	int i;
+	int i, j = 0;
 	int status;
 
 	(void)argc, (void)argv;
@@ -52,6 +52,14 @@ int main(int argc, char **argv, char **envp)
 			free(line);
 			free(cmd_args);
 			exit(22);
+		}
+		if (strcmp(cmd_args[0], "env") == 0 && cmd_args[1] == NULL)
+		{
+			while (envp[j] != NULL)
+			{
+				printf("%s\n", envp[j]);
+				j++;
+			}
 		}
 		else if (strcmp(cmd_args[0], "cd") == 0)
 		{
