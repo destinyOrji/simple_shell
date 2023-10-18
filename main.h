@@ -8,7 +8,5 @@
 #include <string.h>
 #include <sys/wait.h>
 
-/*Prototypes*/
-void our_ls();
 
 #endif /*MAIN_H*/
