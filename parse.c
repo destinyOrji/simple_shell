@@ -5,7 +5,7 @@
  *
  * Return: returns the parsed commands
  */
-#define MAX_BUFF 100
+
 char **parse_command(char *line)
 {
 	char **args = malloc(sizeof(char *) * MAX_BUFF);
@@ -19,5 +19,5 @@ char **parse_command(char *line)
 		i++;
 	}
 	args[i] = NULL;
-	return args;
+	return (args);
 }

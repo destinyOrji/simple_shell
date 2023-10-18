@@ -12,9 +12,10 @@ int main(int argc, char **argv, char **envp)
 {
 	char *line = NULL;
 	size_t n = 0;
+	int j;
+	char **args;
 
 	(void)argc, (void)argv;
-
 	while (1)
 	{
 		display_prompt();
@@ -25,8 +26,7 @@ int main(int argc, char **argv, char **envp)
 			exit(1);
 		}
 
-		char **args = parse_command(line);
-
+		**args = parse_command(line);
 		if (strcmp(args[0], "exit") == 0)
 		{
 			free_args(args);
@@ -35,7 +35,7 @@ int main(int argc, char **argv, char **envp)
 		}
 		else if (strcmp(args[0], "env") == 0 && args[1] == NULL)
 		{
-			int j = 0;
+			j = 0;
 			while (envp[j] != NULL)
 			{
 				write(STDOUT_FILENO, envp[j], strlen(envp[j]));

@@ -8,7 +8,7 @@
 #include <sys/wait.h>
 #include <stdio.h>
 
-void display_prompt();
+void display_prompt(void);
 char **parse_command(char *line);
 void free_args(char **args);
 void execute_command(char **args);

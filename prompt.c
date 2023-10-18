@@ -2,7 +2,7 @@
 /**
  * display_prompt - displays the prompt
  */
-void display_prompt()
+void display_prompt(void)
 {
 	if (isatty(STDIN_FILENO))
 	{

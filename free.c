@@ -1,6 +1,7 @@
 #include "shell.h"
 /**
- * free_args: free a particular array
+ * free_args - free a particular array
+ * @args: the array to be freed
  */
 void free_args(char **args)
 {
