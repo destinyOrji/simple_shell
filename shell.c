@@ -19,6 +19,7 @@ int main(int argc, char **argv, char **envp)
 	char **cmd_args = NULL;
 	int i, j = 0;
 	int status;
+	char nl = '\n';
 
 	(void)argc, (void)argv;
 	while (1)
@@ -58,7 +59,8 @@ int main(int argc, char **argv, char **envp)
 		{
 			while (envp[j] != NULL)
 			{
-				printf("%s\n", envp[j]);
+				write(STDOUT_FILENO, envp[j], _strlen(envp[j]));
+				write(STDOUT_FILENO, &nl, 1);
 				j++;
 			}
 		}

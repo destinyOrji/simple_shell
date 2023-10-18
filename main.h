@@ -10,5 +10,6 @@
 
 /*prototypes*/
 void K_cd(char *directory);
+int _strlen(char *s);
 
 #endif /*MAIN_H*/
