@@ -24,7 +24,6 @@ int main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		i = 0;
-		cmd_args = malloc(sizeof(char *) * 1024);
 		if (isatty(STDIN_FILENO))
 		{
 			write(STDOUT_FILENO, "$ ", 2);
@@ -34,9 +33,11 @@ int main(int argc, char **argv, char **envp)
 
 		if (cmd_line_input == -1)
 		{
+			free(line);
 			exit(18);
 		}
 
+		cmd_args = malloc(sizeof(char *) * 1024);
 		cmd_token = strtok(line, " \n");
 
 		while (cmd_token)
@@ -50,8 +51,6 @@ int main(int argc, char **argv, char **envp)
 		if (strcmp(cmd_args[0], "exit") == 0)
 		{
 			free(line);
-			for (j = 0; cmd_args[j] != NULL; j++)
-				free(cmd_args[j]);
 			free(cmd_args);
 			exit(22);
 		}
@@ -95,7 +94,5 @@ int main(int argc, char **argv, char **envp)
 			}
 		}
 	}
-	free(cmd_args);
-	free(line);
 	return (0);
 }
