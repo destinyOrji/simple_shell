@@ -8,5 +8,7 @@
 #include <string.h>
 #include <sys/wait.h>
 
+/*prototypes*/
+void K_cd(char *directory);
 
 #endif /*MAIN_H*/

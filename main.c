@@ -20,7 +20,7 @@ int main(int argc, char **argv, char **envp)
 	int i;
 	int status;
 
-	(void)argc, (void)argv, (void)envp;
+	(void)argc, (void)argv;
 	while (1)
 	{
 		i = 0;
@@ -29,6 +29,7 @@ int main(int argc, char **argv, char **envp)
 		{
 			write(STDOUT_FILENO, "$ ", 2);
 		}
+
 		cmd_line_input = getline(&line, &n, stdin);
 
 		if (cmd_line_input == -1)
@@ -52,8 +53,13 @@ int main(int argc, char **argv, char **envp)
 			free(cmd_args);
 			exit(22);
 		}
-
-
+		else if (strcmp(cmd_args[0], "cd") == 0)
+		{
+			if (cmd_args[1] == NULL)
+				K_cd(getenv("HOME"));
+			else
+				K_cd(cmd_args[1]);
+		}
 		else
 		{
 			child_p = fork();
@@ -64,7 +70,7 @@ int main(int argc, char **argv, char **envp)
 			}
 			if (child_p == 0)
 			{
-				if (execve(cmd_args[0], cmd_args, NULL) == -1)
+				if (execve(cmd_args[0], cmd_args, envp) == -1)
 				{
 					if (cmd_args[0] != NULL)
 					{
@@ -79,7 +85,7 @@ int main(int argc, char **argv, char **envp)
 			}
 		}
 	}
-
+	free(cmd_args);
 	free(line);
 	return (0);
 }
