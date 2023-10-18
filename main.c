@@ -7,36 +7,79 @@
  *
  * Return: returns 0 on success
  */
+
+int main(int argc, char **argv, char **envp);
 int main(int argc, char **argv, char **envp)
 {
-	char *line = NULL, *cmd_token;
+	char *line = NULL;
+	char *cmd_token;
 	ssize_t cmd_line_input = 0;
 	size_t n = 0;
+	pid_t child_p;
+	char **cmd_args = NULL;
+	int i;
+	int status;
 
+	(void)argc, (void)argv, (void)envp;
 	while (1)
 	{
-		printf("Kalmin's shell$ ");
+		i = 0;
+		cmd_args = malloc(sizeof(char *) * 1024);
+		if (isatty(STDIN_FILENO))
+		{
+			write(STDOUT_FILENO, "$ ", 2);
+		}
 		cmd_line_input = getline(&line, &n, stdin);
 
 		if (cmd_line_input == -1)
 		{
-			perror("getline:(");
-			free(line);
-			return (1);
+			exit(18);
 		}
-		if (line[cmd_line_input - 1] == '\n')
-			line[cmd_line_input - 1] = '\0';
 
-		cmd_token = strtok(line, " ");
+		cmd_token = strtok(line, " \n");
 
-		if (cmd_token != NULL)
+		while (cmd_token)
 		{
-			if (strcmp(cmd_token, "exit") == 0)
+			cmd_args[i] = cmd_token;
+			cmd_token = strtok(NULL, " \n");
+			i++;
+		}
+		cmd_args[i] = NULL;
+
+		if (strcmp(cmd_args[0], "exit") == 0)
+		{
+			free(line);
+			free(cmd_args);
+			exit(22);
+		}
+
+
+		else
+		{
+			child_p = fork();
+			if (child_p == -1)
 			{
-				free(line);
-				return (0);
+				perror("Process failed.");
+				exit(23);
+			}
+			if (child_p == 0)
+			{
+				if (execve(cmd_args[0], cmd_args, NULL) == -1)
+				{
+					if (cmd_args[0] != NULL)
+					{
+						perror("command not found");
+						exit(12);
+					}
+				}
+			}
+			else
+			{
+				wait(&status);
 			}
 		}
 	}
+
+	free(line);
 	return (0);
 }
