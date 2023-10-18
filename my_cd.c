@@ -11,6 +11,6 @@ void K_cd(char *directory)
 	}
 	if (chdir(directory) != 0)
 	{
- 		perror("couldn't change directory");
+		perror("couldn't change directory");
 	}
 }
