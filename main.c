@@ -74,7 +74,7 @@ int main(int argc, char **argv, char **envp)
 				{
 					if (cmd_args[0] != NULL)
 					{
-						perror("command not found");
+						perror("./hsh");
 						exit(12);
 					}
 				}
