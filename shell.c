@@ -27,13 +27,13 @@ int main(int argc, char **argv, char **envp)
 		}
 
 		args = parse_command(line);
-		if (strcmp(args[0], "exit") == 0)
+		if (_strcmp(args[0], "exit") == 0)
 		{
 			free_args(args);
 			free(line);
 			exit(0);
 		}
-		else if (strcmp(args[0], "env") == 0 && args[1] == NULL)
+		else if (_strcmp(args[0], "env") == 0 && args[1] == NULL)
 		{
 			j = 0;
 			while (envp[j] != NULL)
