@@ -50,5 +50,6 @@ int main(int argc, char **argv, char **envp)
 		}
 		free_args(args);
 	}
+	free(line);
 	return (0);
 }
