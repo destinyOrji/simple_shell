@@ -14,7 +14,7 @@ int main(int argc, char **argv, char **envp)
 	char *line = NULL;
 	size_t n = 0;
 	int j;
-	char **args;
+	char **args = NULL;
 
 	(void)argc, (void)argv;
 	while (1)
@@ -28,9 +28,18 @@ int main(int argc, char **argv, char **envp)
 		}
 
 		args = parse_command(line);
+
+		if (args == NULL || args[0] == NULL)
+		{
+			free(line);
+			free_args(args);
+			continue;
+		}
+
 		if (_strcmp(args[0], "exit") == 0)
 		{
 			free_args(args);
+			free(args);
 			free(line);
 			exit(0);
 		}
@@ -49,6 +58,7 @@ int main(int argc, char **argv, char **envp)
 			execute_command(args, envp);
 		}
 		free_args(args);
+		free(args);
 	}
 	free(line);
 	return (0);
