@@ -22,7 +22,7 @@ void execute_command(char **args, char **envp)
 			if (execve(args[0], args, envp) == -1)
 			{
 				perror("Couldn't execute command.");
-				exit(0);
+				exit(2);
 			}
 		}
 		else
