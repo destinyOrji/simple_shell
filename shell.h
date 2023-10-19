@@ -19,5 +19,6 @@ ssize_t _getline(FILE *fp, char **lineptr, size_t *n);
 int _strcmp(char *s1, char *s2);
 void K_cd(char *directory);
 void K_ls(char **path);
+void _ls(char **envp, char **args);
 
 #endif /*MAIN_H*/

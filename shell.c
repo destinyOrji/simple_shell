@@ -46,6 +46,10 @@ int main(int argc, char **argv, char **envp)
 				j++;
 			}
 		}
+		else if (strcmp(args[0], "ls") == 0)
+		{
+			_ls(envp, args);
+		}
 		else
 		{
 			execute_command(args, envp);

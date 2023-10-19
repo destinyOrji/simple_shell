@@ -15,7 +15,7 @@ void execute_command(char **args, char **envp)
 		if (pid == -1)
 		{
 			perror("Process creation failed");
-			exit(1);
+			exit(0);
 		}
 		if (pid == 0)
 		{
