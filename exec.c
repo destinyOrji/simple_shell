@@ -27,7 +27,6 @@ void execute_command(char **args)
 		}
 		else
 		{
-			status;
 			waitpid(pid, &status, 0);
 		}
 	}

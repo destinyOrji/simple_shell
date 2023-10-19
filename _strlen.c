@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 /**
  * _strlen - a function to recursively calculate
  * the length of a string

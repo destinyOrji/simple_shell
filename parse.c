@@ -8,7 +8,7 @@
 
 char **parse_command(char *line)
 {
-	char **args = malloc(sizeof(char *) * MAX_BUFF);
+	char **args = malloc(sizeof(char *) * 100);
 	int i = 0;
 	char *token = strtok(line, " \n");
 

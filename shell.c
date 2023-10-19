@@ -26,7 +26,7 @@ int main(int argc, char **argv, char **envp)
 			exit(1);
 		}
 
-		**args = parse_command(line);
+		args = parse_command(line);
 		if (strcmp(args[0], "exit") == 0)
 		{
 			free_args(args);
