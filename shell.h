@@ -13,7 +13,7 @@
 void display_prompt(void);
 char **parse_command(char *line);
 void free_args(char **args);
-void execute_command(char **args);
+void execute_command(char **args, char **envp);
 int _strlen(char *s);
 ssize_t _getline(FILE *fp, char **lineptr, size_t *n);
 

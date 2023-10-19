@@ -3,7 +3,7 @@
  * execute_command - executes a command
  * @args: the arguments to the cmd
  */
-void execute_command(char **args)
+void execute_command(char **args, char **envp)
 {
 	pid_t pid;
 	int status;
@@ -19,7 +19,7 @@ void execute_command(char **args)
 		}
 		if (pid == 0)
 		{
-			if (execve(args[0], args, NULL) == -1)
+			if (execve(args[0], args, envp) == -1)
 			{
 				perror("Couldn't execute command.");
 				exit(3);
