@@ -20,7 +20,7 @@ int main(int argc, char **argv, char **envp)
 	{
 		display_prompt();
 
-		if (getline(&line, &n, stdin) == -1)
+		if (_getline(stdin, &line, &n) == -1)
 		{
 			free(line);
 			exit(1);
@@ -38,7 +38,7 @@ int main(int argc, char **argv, char **envp)
 			j = 0;
 			while (envp[j] != NULL)
 			{
-				write(STDOUT_FILENO, envp[j], strlen(envp[j]));
+				write(STDOUT_FILENO, envp[j], _strlen(envp[j]));
 				write(STDOUT_FILENO, "\n", 1);
 				j++;
 			}
