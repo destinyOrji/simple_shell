@@ -8,6 +8,7 @@
  * Return: Returns 0 in success
  */
 
+int main(int argc, char **argv, char **envp);
 int main(int argc, char **argv, char **envp)
 {
 	char *line = NULL;
@@ -23,7 +24,7 @@ int main(int argc, char **argv, char **envp)
 		if (_getline(stdin, &line, &n) == -1)
 		{
 			free(line);
-			exit(1);
+			exit(0);
 		}
 
 		args = parse_command(line);
