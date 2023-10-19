@@ -32,6 +32,6 @@ void execute_command(char **args)
 	}
 	else
 	{
-		perror("Executable not found:");
+		perror("./hsh");
 	}
 }
