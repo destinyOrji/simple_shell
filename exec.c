@@ -15,14 +15,14 @@ void execute_command(char **args, char **envp)
 		if (pid == -1)
 		{
 			perror("Process creation failed");
-			exit(2);
+			exit(1);
 		}
 		if (pid == 0)
 		{
 			if (execve(args[0], args, envp) == -1)
 			{
 				perror("Couldn't execute command.");
-				exit(3);
+				exit(0);
 			}
 		}
 		else
