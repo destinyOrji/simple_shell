@@ -5,5 +5,7 @@
  */
 void exit_shell(char **args)
 {
+	(void)args;
+
 	exit(0);
 }
