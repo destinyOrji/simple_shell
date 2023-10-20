@@ -5,11 +5,5 @@
  */
 void exit_shell(char **args)
 {
-	int exit_status = 0;
-
-	if (args[1] != NULL)
-	{
-		exit_status = _atoi(args[1]);
-	}
-	exit(exit_status);
+	exit(0);
 }
