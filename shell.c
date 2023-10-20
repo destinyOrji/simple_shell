@@ -14,7 +14,9 @@ int main(int argc, char **argv, char **envp)
 	char *line = NULL;
 	size_t n = 0;
 	int j;
+	char *s = NULL;
 	char **args = NULL;
+	char *comment_position = NULL;
 
 	(void)argc, (void)argv;
 	while (1)
@@ -27,13 +29,31 @@ int main(int argc, char **argv, char **envp)
 			exit(0);
 		}
 
-		args = parse_command(line);
+		s = strdup(line);
+
+		free(line);
+		if (strlen(s) == 1 && s[0] == '\n')
+		{
+			continue;
+		}
+
+		comment_position = strchr(s, '#');
+
+		if (comment_position != NULL)
+		{
+			*comment_position = '\0';
+		}
+		if (s == NULL)
+		{
+			continue;
+		}
+		args = parse_command(s);
 
 		if (_strcmp(args[0], "exit") == 0)
 		{
 			free_args(args);
-			free(line);
-			exit(0);
+			free(s);
+			exit_shell(args);
 		}
 		else if (_strcmp(args[0], "env") == 0 && args[1] == NULL)
 		{
@@ -66,6 +86,6 @@ int main(int argc, char **argv, char **envp)
 		}
 		free_args(args);
 	}
-	free(line);
+	free(s);
 	return (0);
 }

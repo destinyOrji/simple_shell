@@ -3,8 +3,10 @@
  * execute_command - executes a command
  * @args: the arguments to the cmd
  * @envp: the environment variable passed from the main function
+ *
+ * Return: returns the exit status
  */
-void execute_command(char **args, char **envp)
+int execute_command(char **args, char **envp)
 {
 	pid_t pid;
 	int status;
@@ -16,7 +18,7 @@ void execute_command(char **args, char **envp)
 		if (pid == -1)
 		{
 			perror("Process creation failed");
-			exit(0);
+			return (1);
 		}
 		if (pid == 0)
 		{
@@ -29,10 +31,9 @@ void execute_command(char **args, char **envp)
 		else
 		{
 			waitpid(pid, &status, 0);
+			return (WEXITSTATUS(status));
 		}
 	}
-	else
-	{
-		perror("./hsh");
-	}
+	perror("./hsh");
+	return (1);
 }
