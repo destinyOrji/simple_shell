@@ -8,6 +8,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <stdio.h>
+#include <limits.h>
 
 /*Prototypes*/
 void display_prompt(void);
@@ -20,5 +21,6 @@ int _strcmp(char *s1, char *s2);
 void K_cd(char *directory);
 void K_ls(char **path);
 void _ls(char **envp, char **args);
+void _cd(char *path);
 
 #endif /*MAIN_H*/

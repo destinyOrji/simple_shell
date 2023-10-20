@@ -32,7 +32,6 @@ int main(int argc, char **argv, char **envp)
 		if (_strcmp(args[0], "exit") == 0)
 		{
 			free_args(args);
-			free(args);
 			free(line);
 			exit(0);
 		}
@@ -44,6 +43,17 @@ int main(int argc, char **argv, char **envp)
 				write(STDOUT_FILENO, envp[j], _strlen(envp[j]));
 				write(STDOUT_FILENO, "\n", 1);
 				j++;
+			}
+		}
+		else if (strcmp(args[0], "cd") == 0)
+		{
+			if (args[1] != NULL)
+			{
+				_cd(args[1]);
+			}
+			else
+			{
+				_cd(getenv("HOME"));
 			}
 		}
 		else if (strcmp(args[0], "ls") == 0)

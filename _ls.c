@@ -22,7 +22,7 @@ void _ls(char **envp, char **args)
 		if (execve("/bin/ls", args, envp) == -1)
 		{
 			perror("Couldn't execute ls");
-			exit(0);
+			exit(2);
 		}
 	}
 	else
