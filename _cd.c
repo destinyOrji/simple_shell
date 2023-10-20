@@ -3,6 +3,7 @@
  * _cd - a function that changes directory
  * @path: The path
  */
+void _cd(char *path);
 void _cd(char *path)
 {
 	char *new_path;
