@@ -2,6 +2,7 @@
 /**
  * execute_command - executes a command
  * @args: the arguments to the cmd
+ * @envp: the environment variable passed from the main function
  */
 void execute_command(char **args, char **envp)
 {
