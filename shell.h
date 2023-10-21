@@ -26,5 +26,6 @@ void _cd(char *path);
 int _atoi(char *s);
 int execute_command(char **args, char **envp);
 void exit_shell(char **args);
+char **parse_commands(char *line);
 
 #endif /*MAIN_H*/

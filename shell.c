@@ -13,9 +13,11 @@ int main(int argc, char **argv, char **envp)
 {
 	char *line = NULL;
 	size_t n = 0;
-	int j;
+	int j, i;
 	char **args = NULL;
+	char **commands = NULL;
 	char *comment_position = NULL;
+
 
 	(void)argc, (void)argv;
 	while (1)
@@ -43,7 +45,11 @@ int main(int argc, char **argv, char **envp)
 		{
 			continue;
 		}
-		args = parse_command(line);
+
+		commands = parse_commands(line);
+		for (i = 0; commands[i] != NULL; i++)
+		{
+		args = parse_command(commands[i]);
 
 		if (_strcmp(args[0], "exit") == 0)
 		{
@@ -81,6 +87,8 @@ int main(int argc, char **argv, char **envp)
 			execute_command(args, envp);
 		}
 		free_args(args);
+		}
+		free_args(commands);
 	}
 	free(line);
 	return (0);
